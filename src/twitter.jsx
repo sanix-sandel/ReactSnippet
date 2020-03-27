@@ -8,9 +8,11 @@ class Tweet extends Component{
             <div className="tweet">
                 
                 <ImageComp/>
+                
                 <div className='content'>
                     <Author/>
                     <Message/>
+                    
                     <div className="buttons" >
                         <LikeButton/>
                     </div>
@@ -56,12 +58,41 @@ class Message extends Component{
 }
 
 
+
 class LikeButton extends Component{
+
+    
+    state={
+        likes:0
+    };
+
+    like_action=()=>{
+        this.setState({likes:this.state.likes+1});
+        
+    }
+
     render(){
         return (
-            <i className="fa fa-heart like-button" /> 
+            <div>
+                <button className="btn btn-primary" onClick={this.like_action}>
+                    <i className={this.changeicon()}>
+                        {this.like_counter()}
+                    </i>  
+                </button>
+                
+            </div>       
         );
     }
+
+    like_counter =()=>{
+        return this.state.likes;
+    }
+
+    changeicon=()=>{
+        let classes="fa ";
+        return classes+=this.state.likes===0 ? "fa-thumbs-up":"fa-heart";
+    }
+
 }
 
 
