@@ -17,8 +17,9 @@ class Tweet extends Component{
                        
                         <ReplyButton/>
                         <RetweetButton/>
-                        <LikeButton/>
+                        <LikeButton likes={this.props.likes}/>
                         <Share/>
+                        <HideTweet OnDelete={this.props.OnDelete} id={this.props.id}/>
                                              
                     </div>
                 </div>
@@ -46,7 +47,7 @@ class Author extends Component{
         return (
             <span className="author">
                 <span className="name">{this.props.name}</span>
-                <span className="handle">@sanix</span>
+                <span className="handle">@{this.props.name}</span>
             </span>
         );
     }
@@ -62,13 +63,11 @@ class Message extends Component{
     }
 }
 
-
-
 class LikeButton extends Component{
 
     
     state={
-        likes:0
+        likes:this.props.likes
     };
 
 
@@ -83,8 +82,7 @@ class LikeButton extends Component{
             
             <i onClick={this.like_action} className={this.changeicon()}>
                     {this.like_counter()}
-            </i>
-                   
+            </i>  
         );
     }
 
@@ -107,5 +105,14 @@ const Share=()=>(<i className="fa fa-share-alt" aria-hidden="true"/>)
 
 const RetweetButton=()=>(<i className="fa fa-retweet"/>)
 
+
+class HideTweet extends Component{
+    render(){
+        return (
+        <i onClick={() => this.props.OnDelete(this.props.id)} className="fa fa-eye-slash">
+        </i>
+        );
+    }    
+}
 
 export default Tweet;
