@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Tweet from './twitter.jsx'
+import Tweets from './tweets.jsx'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Tweet />
+    <Tweets />
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -10,16 +10,21 @@ class Tweet extends Component{
                 <ImageComp/>
                 
                 <div className='content'>
-                    <Author/>
-                    <Message/>
+                    <Author name={this.props.name}/><Time/>
+                    <Message message={this.props.message}/>
                     
                     <div className="buttons" >
+                       
+                        <ReplyButton/>
+                        <RetweetButton/>
                         <LikeButton/>
+                        <Share/>
+                                             
                     </div>
                 </div>
                 
             </div>
-        )
+        );
     }
 }
 
@@ -40,7 +45,7 @@ class Author extends Component{
     render(){
         return (
             <span className="author">
-                <span className="name">Sanix</span>
+                <span className="name">{this.props.name}</span>
                 <span className="handle">@sanix</span>
             </span>
         );
@@ -51,7 +56,7 @@ class Message extends Component{
     render(){
         return(
             <div className="message">
-                This is my first tweet !
+                {this.props.message}
             </div>
         );
     }
@@ -66,6 +71,8 @@ class LikeButton extends Component{
         likes:0
     };
 
+
+
     like_action=()=>{
         this.setState({likes:this.state.likes+1});
         
@@ -73,14 +80,11 @@ class LikeButton extends Component{
 
     render(){
         return (
-            <div>
-                <button className="btn btn-primary" onClick={this.like_action}>
-                    <i className={this.changeicon()}>
-                        {this.like_counter()}
-                    </i>  
-                </button>
-                
-            </div>       
+            
+            <i onClick={this.like_action} className={this.changeicon()}>
+                    {this.like_counter()}
+            </i>
+                   
         );
     }
 
@@ -94,6 +98,14 @@ class LikeButton extends Component{
     }
 
 }
+
+const Time=()=>(<span className='time'>3 h ago</span>)
+
+const ReplyButton=()=>(<i className="fa fa-reply"/>)
+
+const Share=()=>(<i className="fa fa-share-alt" aria-hidden="true"/>)
+
+const RetweetButton=()=>(<i className="fa fa-retweet"/>)
 
 
 export default Tweet;
