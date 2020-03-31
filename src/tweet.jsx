@@ -10,16 +10,16 @@ class Tweet extends Component{
                 <ImageComp/>
                 
                 <div className='content'>
-                    <Author name={this.props.name}/><Time/>
-                    <Message message={this.props.message}/>
+                    <Author name={this.props.user.name}/><Time/>
+                    <Message message={this.props.user.message}/>
                     
                     <div className="buttons" >
                        
                         <ReplyButton/>
                         <RetweetButton/>
-                        <LikeButton likes={this.props.likes}/>
+                        <LikeButton likes={this.props.user.likes}/>
                         <Share/>
-                        <HideTweet OnDelete={this.props.OnDelete} id={this.props.id}/>
+                        <HideTweet OnDelete={this.props.OnDelete} id={this.props.user.id}/>
                                              
                     </div>
                 </div>
